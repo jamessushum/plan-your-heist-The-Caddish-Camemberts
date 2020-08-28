@@ -11,7 +11,7 @@ namespace plan_your_heist_THE_CADDISH_CAMEMBERTS {
             Team team = start ();
             int TeamSkills = team.AddTeamSkills ();
             // team.DisplayTeamMembers();
-            Console.WriteLine (TeamSkills);
+
             Bank aBank = new Bank (100);
             int Difficulty = aBank.difficulty;
             BankHeist (TeamSkills, Difficulty);
@@ -25,7 +25,7 @@ namespace plan_your_heist_THE_CADDISH_CAMEMBERTS {
                 // Get member name
                 Console.WriteLine ("Enter a team member's name: ");
                 string memberName = Console.ReadLine ();
-                Console.WriteLine (memberName);
+
                 if (memberName.Length == 0) {
                     return Ateam;
                 }
@@ -43,10 +43,6 @@ namespace plan_your_heist_THE_CADDISH_CAMEMBERTS {
                 }
                 while (courageFactor < 0.0 || courageFactor > 2.0);
 
-                Console.WriteLine (memberName);
-                Console.WriteLine (skillLevel);
-                Console.WriteLine (courageFactor);
-
                 Ateam.AddMember (new TeamMember (memberName, skillLevel, courageFactor));
             }
             return Ateam;
@@ -57,7 +53,7 @@ namespace plan_your_heist_THE_CADDISH_CAMEMBERTS {
             string memberSkillLevel;
             int skillLevel;
             do {
-                Console.WriteLine ($"Enter {memberName}'s skill level (between 1 to 10): ");
+                Console.WriteLine ($"Enter {memberName}'s skill level (between 1 and 10): ");
                 memberSkillLevel = Console.ReadLine ();
             }
             while ((int.TryParse (memberSkillLevel, out skillLevel) == false));
@@ -70,7 +66,7 @@ namespace plan_your_heist_THE_CADDISH_CAMEMBERTS {
             string memberCourageFactor;
             double courageFactor;
             do {
-                Console.WriteLine ($"Enter {memberName}'s courage factor (between 0.0 to 2.0): ");
+                Console.WriteLine ($"Enter {memberName}'s courage factor (between 0.0 and 2.0): ");
                 memberCourageFactor = Console.ReadLine ();
             }
             while ((double.TryParse (memberCourageFactor, out courageFactor) == false));
@@ -79,7 +75,12 @@ namespace plan_your_heist_THE_CADDISH_CAMEMBERTS {
         }
 
         public static void BankHeist (int TeamSkills, int Difficulty) {
-            if (TeamSkills >= Difficulty) {
+            int luckvalue = new Random ().Next (-10, 10);
+            int BankLikelyhood = luckvalue + Difficulty;
+            Console.WriteLine ($"Bank value {BankLikelyhood}");
+            Console.WriteLine ($"Team combined skill = {TeamSkills}");
+
+            if (TeamSkills >= BankLikelyhood) {
                 Console.WriteLine ("Congradulations!! You've robbed aBank");
             } else {
                 Console.WriteLine ("Welcome to Jail!");
