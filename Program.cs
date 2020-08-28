@@ -14,32 +14,45 @@ namespace plan_your_heist_THE_CADDISH_CAMEMBERTS
             start();
 
         }
-        public static void start()
+        public static Team start()
         {
-            // Get member name
-            Console.WriteLine("Enter a team member's name: ");
-            string memberName = Console.ReadLine();
-
-            // Get member skill level
-            int skillLevel;
-            do
+            Team Ateam = new Team();
+            bool exit = true;
+            while (exit)
             {
-                skillLevel = enterSkillLevel(memberName);
+
+
+                // Get member name
+                Console.WriteLine("Enter a team member's name: ");
+                string memberName = Console.ReadLine();
+                Console.WriteLine(memberName);
+                if (memberName.Length == 0)
+                {
+                    return Ateam;
+                }
+                // Get member skill level
+                int skillLevel;
+                do
+                {
+                    skillLevel = enterSkillLevel(memberName);
+                }
+                while (skillLevel < 1 || skillLevel > 10);
+
+                // Get member courage factor
+                double courageFactor;
+                do
+                {
+                    courageFactor = enterCourageFactor(memberName);
+                }
+                while (courageFactor < 0.0 || courageFactor > 2.0);
+
+                Console.WriteLine(memberName);
+                Console.WriteLine(skillLevel);
+                Console.WriteLine(courageFactor);
+
+                Ateam.AddMember(new TeamMember(memberName, skillLevel, courageFactor));
             }
-            while (skillLevel < 1 || skillLevel > 10);
-
-            // Get member courage factor
-            double courageFactor;
-            do
-            {
-                courageFactor = enterCourageFactor(memberName);
-            }
-            while (courageFactor < 0.0 || courageFactor > 2.0);
-
-            Console.WriteLine(memberName);
-            Console.WriteLine(skillLevel);
-            Console.WriteLine(courageFactor);
-
+            return Ateam;
         }
 
         // Method gets user skill level string and returns integer
