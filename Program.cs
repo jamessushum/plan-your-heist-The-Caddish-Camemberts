@@ -11,10 +11,16 @@ namespace plan_your_heist_THE_CADDISH_CAMEMBERTS {
             Team team = start ();
             int TeamSkills = team.AddTeamSkills ();
             // team.DisplayTeamMembers();
-
+            int trials = getTrials();
             Bank aBank = new Bank (100);
             int Difficulty = aBank.difficulty;
-            BankHeist (TeamSkills, Difficulty);
+            int count = 0;
+            do
+            {
+               BankHeist (TeamSkills, Difficulty); 
+               count++;
+            }while(count < trials);
+            Console.WriteLine ("COMPLETE!");
 
         }
         public static Team start () {
@@ -86,5 +92,22 @@ namespace plan_your_heist_THE_CADDISH_CAMEMBERTS {
                 Console.WriteLine ("Welcome to Jail!");
             }
         }
+        public static int getTrials()
+        {   
+            int result = 0;
+            string response;
+            do
+            {
+                Console.WriteLine("How many attemps will you make?");
+                response = Console.ReadLine();
+
+
+
+
+            } while(Int32.TryParse(response, out result)== false);
+            return result;
+        }
     }
+    
+        
 }
