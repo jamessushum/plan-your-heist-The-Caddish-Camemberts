@@ -12,7 +12,13 @@ namespace plan_your_heist_THE_CADDISH_CAMEMBERTS
             Console.WriteLine("----------------");
 
             Team team = start();
-            team.DisplayTeamMembers();
+            int TeamSkills = team.AddTeamSkills ();
+            // team.DisplayTeamMembers();
+            Console.WriteLine(TeamSkills);
+            Bank aBank = new Bank(100);
+            int Difficulty = aBank.difficulty;
+            BankHeist(TeamSkills, Difficulty);
+
 
         }
         public static Team start()
@@ -84,6 +90,15 @@ namespace plan_your_heist_THE_CADDISH_CAMEMBERTS
             while ((double.TryParse(memberCourageFactor, out courageFactor) == false));
 
             return courageFactor;
+        }
+
+        public static void BankHeist(int TeamSkills, int Difficulty) {
+            if ( TeamSkills >= Difficulty) {
+                Console.WriteLine("Congradulations!! You've robbed aBank");
+            }
+            else {
+                Console.WriteLine("Welcome to Jail!");
+            }
         }
     }
 }
