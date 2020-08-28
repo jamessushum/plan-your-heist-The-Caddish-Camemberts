@@ -11,5 +11,21 @@ namespace plan_your_heist_THE_CADDISH_CAMEMBERTS
         {
             TeamList.Add(member.memberName, member);
         }
+        public void DisplayTeamMembers()
+        {
+            DisplayCount();
+            foreach (KeyValuePair<string, TeamMember> teamMember in TeamList)
+            {
+                Console.WriteLine($"Name: {teamMember.Key}");
+                Console.WriteLine($"Skill: {teamMember.Value.skillLevel}");
+                Console.WriteLine($"Courage: {teamMember.Value.courageFactor}");
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            }
+
+        }
+        public void DisplayCount()
+        {
+            Console.WriteLine($"Team Count: {TeamList.Count}");
+        }
     }
 }

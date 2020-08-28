@@ -11,7 +11,8 @@ namespace plan_your_heist_THE_CADDISH_CAMEMBERTS
             Console.WriteLine("Plan Your Heist!");
             Console.WriteLine("----------------");
 
-            start();
+            Team team = start();
+            team.DisplayTeamMembers();
 
         }
         public static Team start()
